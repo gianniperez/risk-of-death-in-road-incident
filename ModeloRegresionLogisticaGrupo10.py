@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[34]:
 
 
 import pandas as pd
@@ -30,13 +30,13 @@ dataframe = encoded_data
 dataframe.head()
 
 
-# In[2]:
+# In[35]:
 
 
 dataframe.describe()
 
 
-# In[3]:
+# In[36]:
 
 
 print(dataframe.groupby('fatal').size())
@@ -55,7 +55,7 @@ plt.show()
 sb.pairplot(dataframe.dropna(), hue='fatal',height=12,vars=["edad","momento_hecho_Diurno","momento_hecho_Nocturno","sexo_Femenino","sexo_Masculino","clase_victima_Conductor","clase_victima_Pasajero","clase_victima_Peaton","vehiculo_victima_Automovil","tipo_incidente_Colision vehiculo/Persona","tipo_incidente_Colision vehiculo/Vehiculo","clima_Bueno"],kind='reg')
 
 
-# In[26]:
+# In[37]:
 
 
 X = np.array(dataframe.drop(['fatal'],axis=1))
@@ -68,11 +68,11 @@ X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, te
 X_resampled.shape
 
 
-# In[27]:
+# In[38]:
 
 
 # Crear y entrenar el modelo de regresión logística
-model = linear_model.LogisticRegression(max_iter=9000)
+model = linear_model.LogisticRegression(max_iter=9000, C=1.0, penalty='l2', solver='lbfgs')
 model.fit(X_train, y_train)
 
 # Realizar predicciones en el conjunto de prueba
@@ -84,4 +84,10 @@ print(f'Precisión del modelo: {accuracy:.2f}')
 
 report = classification_report(y_test, y_pred)
 print('Reporte de clasificación:\n', report)
+
+
+# In[ ]:
+
+
+
 
