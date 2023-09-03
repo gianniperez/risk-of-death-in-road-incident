@@ -1,0 +1,5 @@
+= Riesgo de defunción en incidente vial | Machine Learning
+
+== Implementación
+
+https://huggingface.co/spaces/grupo10/risk-of-death-in-road-incident
